@@ -8,7 +8,7 @@
 import invariant from 'shared/invariant';
 import warningWithoutStack from 'shared/warningWithoutStack';
 import {REACT_ELEMENT_TYPE} from 'shared/ReactSymbols';
-
+// todo: know 所有CreateElement创建的组件接受的owner参数都来自这里
 import ReactCurrentOwner from './ReactCurrentOwner';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -119,6 +119,7 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
     ref: ref,
     props: props,
 
+    //todo: know _owner (owner.current is Fiber)
     // Record the component responsible for creating this element.
     _owner: owner,
   };
@@ -319,7 +320,7 @@ export function createElement(type, config, children) {
     if (hasValidKey(config)) {
       key = '' + config.key;
     }
-
+    // todo:toknow: self source
     self = config.__self === undefined ? null : config.__self;
     source = config.__source === undefined ? null : config.__source;
     // Remaining properties are added to a new props object

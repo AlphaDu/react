@@ -43,6 +43,7 @@ const ReactNoopUpdateQueue = {
    * @protected
    * @final
    */
+  //todo:know 什么时候return true
   isMounted: function(publicInstance) {
     return false;
   },

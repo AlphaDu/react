@@ -19,6 +19,7 @@ if (__DEV__) {
  * Base class helpers for the updating state of a component.
  */
 function Component(props, context, updater) {
+  //todo:know 组件有props，context，refs， updater，但没有state
   this.props = props;
   this.context = context;
   // If a component has string refs, we will assign a different object later.
@@ -55,6 +56,8 @@ Component.prototype.isReactComponent = {};
  * @final
  * @protected
  */
+
+//todo:know:setState时调用component的updater成员的方法
 Component.prototype.setState = function(partialState, callback) {
   invariant(
     typeof partialState === 'object' ||
@@ -135,7 +138,7 @@ function PureComponent(props, context, updater) {
   this.refs = emptyObject;
   this.updater = updater || ReactNoopUpdateQueue;
 }
-
+//todo:know: PureComponent 继承了Component的dummy
 const pureComponentPrototype = (PureComponent.prototype = new ComponentDummy());
 pureComponentPrototype.constructor = PureComponent;
 // Avoid an extra prototype jump for these methods.
